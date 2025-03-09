@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Привет, {{ user.username }}! Ваше расписание на {{ day }}</h1>
+    <ul>
+        {% for schedule in schedules %}
+            <li>{{ schedule.formatted_time }}: {{ schedule.activity }}</li>
+        {% endfor %}
+    </ul>
+
+    <a href="{% url 'schedule_list' %}" class="back-link">Назад к общему расписанию</a>
+    <a href="{% url 'show_day' day=previous_day %}" class="back-link">Предыдущий день</a> |
+    <a href="{% url 'show_day' day=next_day %}" class="back-link">Следующий день</a><br/>
+{% endblock %}

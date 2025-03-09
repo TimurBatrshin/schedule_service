@@ -1,0 +1,7 @@
+{% extends "base.html" %}base.html
+
+{% block content %}
+    <h2>Расписание</h2>
+    <a href="{% url 'admin:schedule_scheduleitem_upload_schedule' %}" class="button">Загрузить расписание</a>
+    <div>{{ block.super }}</div>
+{% endblock %}
