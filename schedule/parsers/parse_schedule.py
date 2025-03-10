@@ -6,7 +6,6 @@ import logging
 logger = logging.getLogger(__name__)
 
 def parse_schedule_new(excel_file):
-    # Открытие и обработка файла Excel
     wb = openpyxl.load_workbook(excel_file)
     sheet = wb.active
 
@@ -21,10 +20,8 @@ def parse_schedule_new(excel_file):
 
         logger.debug(f"Группа: {group_name}, День недели: {day_of_week}, Время: {time}, Активность: {activity}, Место: {location}, Описание: {description}")
 
-        # Получаем или создаем группу
         group, created = Group.objects.get_or_create(name=group_name)
 
-        # Создаем запись в расписании
         ScheduleItem.objects.create(
             group=group,
             day_of_week=day_of_week,

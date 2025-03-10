@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from .models import ScheduleItem, ScheduleUpdate
 from users.models import UserProfile
-from .forms import ScheduleItemForm  # Если у вас есть форма для добавления/редактирования
+from .forms import ScheduleItemForm 
 import datetime
 
 # Функция для получения названия дня недели по его номеру
@@ -17,12 +17,9 @@ def schedule_list(request):
     try:
         user_profile = request.user.userprofile
     except UserProfile.DoesNotExist:
-        # Если профиль не существует, можно создать новый профиль или вернуть ошибку
-        # Например, создаем новый профиль:
         user_profile = UserProfile.objects.create(user=request.user)
     
     group = user_profile.group
-    # Дальше твой код
     return render(request, 'schedule/schedule_list.html', {'group': group})
 # Показывает расписание на выбранный день (по умолчанию на сегодня)
 def show_daily_schedule(request, day=None):

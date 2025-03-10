@@ -79,11 +79,11 @@ WSGI_APPLICATION = 'schedule_service.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'schedule_db',  # Имя вашей базы данных
-        'USER': 'postgres',  # Имя пользователя базы данных
-        'PASSWORD': 'qwerty123',  # Пароль пользователя базы данных
-        'HOST': 'localhost',  # Хост базы данных (оставьте localhost для локальной разработки)
-        'PORT': '5432',  # Порт базы данных (по умолчанию 5432)
+        'NAME': 'schedule_db', 
+        'USER': 'postgres',  
+        'PASSWORD': 'qwerty123',  
+        'HOST': 'localhost',  
+        'PORT': '5432', 
     }
 }
 

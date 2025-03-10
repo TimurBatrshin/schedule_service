@@ -15,7 +15,6 @@ def handle_passport_data(message):
     user_id = message.from_user.id
     passport_data = message.passport_data
 
-    # Получаем данные паспорта (например, номер телефона)
     phone_data = None
     for field in passport_data.data:
         if field.type == "phone_number":
@@ -23,11 +22,9 @@ def handle_passport_data(message):
             break
 
     if phone_data:
-        # Ищем пользователя в базе по Telegram ID
         user_profile = UserProfile.objects.get(telegram_id=user_id)
 
         if user_profile:
-            # Сохраняем данные в профиль
             user_profile.phone_number = phone_data
             user_profile.save()
             bot.send_message(user_id, "Ваш номер телефона успешно подтвержден!")
@@ -43,7 +40,6 @@ def start_message(message):
     first_name = message.from_user.first_name
     username = message.from_user.username
     
-    # Проверяем, есть ли пользователь в базе
     user_profile = UserProfile.objects.filter(telegram_id=user_id).first()
     
     if user_profile is None:
@@ -54,7 +50,6 @@ def start_message(message):
     else:
         bot.send_message(user_id, f"Привет, {first_name}! Ты уже авторизован.")
     
-    # Получаем персональное расписание для группы
     if not user_profile.group:
         bot.send_message(user_id, "Пожалуйста, укажи свою группу командой /set_group <название_группы>.")
         return
